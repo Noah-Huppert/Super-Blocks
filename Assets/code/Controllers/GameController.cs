@@ -1,93 +1,88 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
 
 public class GameController : MonoBehaviour {
-    public static GameController controller;
-    public SaveController saveData;
-    public StageController stageController;
-    public ProblemBlobCollection problems;
+    public static GameController controller { get; private set; }
+    public DataController data { get; private set; }
+    public StageController stage { get; private set; }
 
-    /* Unity Methods */
-    public void OnEnable() {
-        /* Load Data */
-        this.load();
-    }
-
+    /* Unity Lifecycle Methods
+     * Awake
+     * OnEnable
+     * Start
+     * Update
+     * OnGUI
+     * OnDisable
+     * OnDestroy
+     */
     public void Awake() {
-        /* Load Game Controller */
-        this.setGameController(this);
-
-        /* Load Settings Controller */
-        this.setSaveController(new SaveController());
-
-        /* Load Stage Controller */
-        this.setStageController(new StageController("leftColumn", "centerColumn", "rightColumn"));
-
-        /* Load Problem Blob Collection */
-        this.setProblemBlobCollection(new ProblemBlobCollection());
+        this.doSingleton();
+        this.initProperties();
     }
 
-    public void Start() {
+    public void OnEnable() {
+        this.Load();
     }
 
-    public void OnGUI(){
-        if(GUI.Button(new Rect(10, 5, 100, 30), "New Problem")){
-            stageController.generate();
+    public void OnGUI() {
+        if (GUI.Button(new Rect(10, 5, 100, 30), "New Problem")) {
+            this.stage.generate();
         }
-    }
 
-    public void Update() {
+        if (GUI.Button(new Rect(10, 40, 100, 30), "Data")) {
+            Debug.Log(this.data.maxProblemTerm);
+        }
 
+        if (GUI.Button(new Rect(10, 80, 100, 30), "Change Data")) {
+            this.data.maxProblemTerm += 11;
+        }
     }
 
     public void OnDisable() {
-        /* Save Data */
-        this.save();
+        this.Save();
     }
 
 
-    /* Setters */
-    public void setGameController(GameController sGameController) {
-        if (controller == null) {
-            controller = sGameController;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (controller != this) {
+    /* Actions */
+    private void doSingleton() {
+        /* Makes this a singleton */
+        if (controller != null && controller != this) {//Make sure current controller is this one
             Destroy(gameObject);
         }
+
+        controller = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void setSaveController(SaveController sSaveController) {
-        if (saveData == null) {
-            saveData = sSaveController;
+    private void initProperties() {
+        this.data = new DataController();
+        this.stage = new StageController("leftColumn", "centerColumn", "rightColumn");
+    }
+
+
+    /* Save & Load */
+    /*public void Save() {
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        FileStream fileStream = File.Create(this.data._dataFile);
+        
+        binaryFormatter.Serialize(fileStream, Convert.ChangeType(this.data, typeof(System.Ex)));
+
+        fileStream.Close();
+    }
+
+    public void Load() {
+        if (File.Exists(this.data._dataFile)) {
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            FileStream fileStream = File.Open(this.data._dataFile, FileMode.Open);
+
+            System.Object loadedData = binaryFormatter.Deserialize(fileStream);
+
+            this.data.Load(loadedData);
+
+            fileStream.Close();
         }
-    }
-
-    public void setStageController(StageController sStageController) {
-        if (stageController == null) {
-            stageController = sStageController;
-        }
-    }
-
-    public void setProblemBlobCollection(ProblemBlobCollection sProblemBlobCollection) {
-        if (problems == null) {
-            problems = sProblemBlobCollection;
-        }
-    }
-
-
-    /* Saving & Loading */
-    public void save() {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.Open);
-
-
-    }
-
-    public void load() {
-
-    }
+    }*/
 }

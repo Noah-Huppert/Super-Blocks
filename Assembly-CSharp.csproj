@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\code\ClassTemplate.cs" />
+     <Compile Include="Assets\code\Controllers\DataController.cs" />
      <Compile Include="Assets\code\Controllers\GameController.cs" />
      <Compile Include="Assets\code\Controllers\ProblemGenerator.cs" />
-     <Compile Include="Assets\code\Controllers\SaveController.cs" />
      <Compile Include="Assets\code\Controllers\StageController.cs" />
      <Compile Include="Assets\code\Models\BasicCollection.cs" />
      <Compile Include="Assets\code\Models\Block.cs" />
@@ -58,7 +58,11 @@
      <Compile Include="Assets\code\Models\ProblemBlockCollection.cs" />
      <Compile Include="Assets\code\Models\StageColumn.cs" />
      <Compile Include="Assets\code\Models\StageColumnCollection.cs" />
+     <None Include="Assets\libs\Newtonsoft.Json.xml" />
      <None Include="Assets\fonts\aaram\readme.txt" />
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/Users/noahh_000/Noah/Programing/Unity/Super Blocks/Assets/libs/Newtonsoft.Json.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
