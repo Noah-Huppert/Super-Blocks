@@ -46,8 +46,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\code\Block.cs" />
-     <Compile Include="Assets\code\StackController.cs" />
+     <Compile Include="Assets\code\ClassTemplate.cs" />
+     <Compile Include="Assets\code\Controllers\GameController.cs" />
+     <Compile Include="Assets\code\Controllers\ProblemGenerator.cs" />
+     <Compile Include="Assets\code\Controllers\SaveController.cs" />
+     <Compile Include="Assets\code\Controllers\StageController.cs" />
+     <Compile Include="Assets\code\Models\BasicCollection.cs" />
+     <Compile Include="Assets\code\Models\Block.cs" />
+     <Compile Include="Assets\code\Models\Problem.cs" />
+     <Compile Include="Assets\code\Models\ProblemBlob.cs" />
+     <Compile Include="Assets\code\Models\ProblemBlockCollection.cs" />
+     <Compile Include="Assets\code\Models\StageColumn.cs" />
+     <Compile Include="Assets\code\Models\StageColumnCollection.cs" />
      <None Include="Assets\fonts\aaram\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
