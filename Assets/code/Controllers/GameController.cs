@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System;
+using Newtonsoft.Json;
 
 public class GameController : MonoBehaviour {
     public static GameController controller { get; private set; }
@@ -27,18 +27,8 @@ public class GameController : MonoBehaviour {
         this.Load();
     }
 
-    public void OnGUI() {
-        if (GUI.Button(new Rect(10, 5, 100, 30), "New Problem")) {
-            this.stage.generate();
-        }
-
-        if (GUI.Button(new Rect(10, 40, 100, 30), "Data")) {
-            Debug.Log(this.data.maxProblemTerm);
-        }
-
-        if (GUI.Button(new Rect(10, 80, 100, 30), "Change Data")) {
-            this.data.maxProblemTerm += 11;
-        }
+    public void Update() {
+        GameController.controller.stage.update();
     }
 
     public void OnDisable() {
@@ -64,25 +54,15 @@ public class GameController : MonoBehaviour {
 
 
     /* Save & Load */
-    /*public void Save() {
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-        FileStream fileStream = File.Create(this.data._dataFile);
-        
-        binaryFormatter.Serialize(fileStream, Convert.ChangeType(this.data, typeof(System.Ex)));
-
-        fileStream.Close();
+    public void Save() {
+        File.WriteAllText(this.data._dataFile, Newtonsoft.Json.JsonConvert.SerializeObject(this.data));
     }
 
     public void Load() {
         if (File.Exists(this.data._dataFile)) {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream fileStream = File.Open(this.data._dataFile, FileMode.Open);
-
-            System.Object loadedData = binaryFormatter.Deserialize(fileStream);
-
-            this.data.Load(loadedData);
-
-            fileStream.Close();
+            var saveFileText = File.ReadAllText(this.data._dataFile);
+            DataController dataController = Newtonsoft.Json.JsonConvert.DeserializeObject<DataController>(saveFileText);
+            this.data = dataController;
         }
-    }*/
+    }
 }

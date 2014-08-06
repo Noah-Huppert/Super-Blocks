@@ -16,7 +16,7 @@ public class Block{
             RigidbodyConstraints.FreezePositionX |
             RigidbodyConstraints.FreezePositionZ |
             RigidbodyConstraints.FreezeRotation;
-        //cubeObject.GetComponent<Rigidbody>().mass = 20;
+        cubeObject.GetComponent<Rigidbody>().mass = 100;
 
         this.setCubeObject(cubeObject);
 
