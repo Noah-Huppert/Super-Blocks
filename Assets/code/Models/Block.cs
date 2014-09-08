@@ -5,7 +5,7 @@ public class Block{
     private GameObject textObject;
     private GameObject cubeObject;
 
-    public Block(string displayText) {
+    public Block(string displayText, Material blockMaterial) {
         /* Create Cube Object */
         GameObject cubeObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cubeObject.name = "Block " + displayText;
@@ -17,6 +17,8 @@ public class Block{
             RigidbodyConstraints.FreezePositionZ |
             RigidbodyConstraints.FreezeRotation;
         cubeObject.GetComponent<Rigidbody>().mass = 100;
+        cubeObject.GetComponent<BoxCollider>().size = new Vector3(1.1f, 1.1f, 1.1f);
+        cubeObject.renderer.material = blockMaterial;// (Material)Resources.Load("BlockOutline");
 
         this.setCubeObject(cubeObject);
 
@@ -27,10 +29,10 @@ public class Block{
         textObject.transform.localPosition = new Vector3(-0.225f, 0.5f, 0.0f);
 
         textObject.AddComponent<TextMesh>();
-        textObject.GetComponent<TextMesh>().fontSize = 130;
+        textObject.GetComponent<TextMesh>().fontSize = 80;
         textObject.GetComponent<TextMesh>().offsetZ = -5;
         textObject.GetComponent<TextMesh>().color = new Color(0, 0, 0);
-        textObject.GetComponent<TextMesh>().font = (Font)Resources.Load("aaram-regular");
+        textObject.GetComponent<TextMesh>().font = (Font)Resources.Load("georgia");
 
         textObject.GetComponent<MeshRenderer>().material = textObject.GetComponent<TextMesh>().font.material;
 
@@ -38,6 +40,12 @@ public class Block{
 
         /* Set text */
         this.setDisplayText(displayText);
+    }
+
+    
+    /* Actions */
+    public void destroy() {
+        GameObject.Destroy(this.getCubeObject());
     }
 
 

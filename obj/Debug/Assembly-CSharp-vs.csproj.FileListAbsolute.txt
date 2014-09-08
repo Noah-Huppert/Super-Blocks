@@ -1,0 +1,15 @@
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\UnityEditor.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\UnityEngine.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\nunit.framework.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Temp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\obj\Debug\Assembly-CSharp.dll
+C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\obj\Debug\Assembly-CSharp.pdb

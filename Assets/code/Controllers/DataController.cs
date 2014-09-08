@@ -11,6 +11,9 @@ public class DataController {
     public bool advancedProblemMode { get; set; }
     public float problemIntervalTime { get; set; }
     public int maxProblemCount { get; set; }
+    public int wrongProblemVariationMin { get; set; }
+    public int wrongProblemVariationMax { get; set; }
+    public float answerTimeout { get; set; }
 
     /* Meta */
     public string _dataFile { get; private set; }
@@ -22,9 +25,14 @@ public class DataController {
 
         /* Data */
         minProblemTerm = 1;
-        maxProblemTerm = 10;
+        maxProblemTerm = 5;
         advancedProblemMode = false;
         problemIntervalTime = 4f;
         maxProblemCount = 4;
+
+        wrongProblemVariationMin = 1;
+        wrongProblemVariationMax = 5;
+
+        answerTimeout = 5;
     }
 }
