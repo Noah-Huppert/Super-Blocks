@@ -8,10 +8,13 @@ public class GuiController : MonoBehaviour {
     public string leftAnswerButtonId { get; set; }
     public string centerAnswerButtonId { get; set; }
     public string rightAnswerButtonId { get; set; }
+    public string gameScoreTextId { get; set; }
+    public string answerTimeoutSliderId { get; set; }
 
     public GameObject leftAnswerButton;
     public GameObject centerAnswerButton;
     public GameObject rightAnswerButton;
+    public GameObject gameScore;
     public GameObject answerTimer;
 
     public void Awake() {
@@ -23,7 +26,11 @@ public class GuiController : MonoBehaviour {
         leftAnswerButton = GameObject.Find(GuiController.controller.leftAnswerButtonId);
         centerAnswerButton = GameObject.Find(GuiController.controller.centerAnswerButtonId);
         rightAnswerButton = GameObject.Find(GuiController.controller.rightAnswerButtonId);
-        answerTimer = GameObject.Find("Answer Timer");
+        answerTimer = GameObject.Find(GuiController.controller.answerTimeoutSliderId);
+        gameScore = GameObject.Find(GuiController.controller.gameScoreTextId);
+
+
+        GuiController.controller.setAnswerButtonsActive(false);
     }
 
     /* Actions */
@@ -41,24 +48,36 @@ public class GuiController : MonoBehaviour {
         leftAnswerButtonId = "Left Answer Button";
         centerAnswerButtonId = "Center Answer Button";
         rightAnswerButtonId = "Right Answer Button";
+        answerTimeoutSliderId = "Answer Timer";
+        gameScoreTextId = "Game Score";
+    }
+
+    public void setAnswerButtonsActive(bool active) {
+        leftAnswerButton.SetActive(active);
+        centerAnswerButton.SetActive(active);
+        rightAnswerButton.SetActive(active);
     }
 
     public void setUIText(string uiObjectId, string newText) {
-        GameObject gameObject = leftAnswerButton;
+        Text textObject = leftAnswerButton.transform.Find("Text").GetComponent<Text>();
 
         if (uiObjectId == leftAnswerButtonId) {
-            gameObject = leftAnswerButton;
+            textObject = leftAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
         if (uiObjectId == centerAnswerButtonId) {
-            gameObject = centerAnswerButton;
+            textObject = centerAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
         if (uiObjectId == rightAnswerButtonId) {
-            gameObject = rightAnswerButton;
+            textObject = rightAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
-        gameObject.transform.Find("Text").GetComponent<Text>().text = newText;
+        if (uiObjectId == gameScoreTextId) {
+            textObject = gameScore.GetComponent<Text>();
+        }
+
+        textObject.text = newText;
     }
 
     public void setSlider(float value) {
@@ -66,21 +85,25 @@ public class GuiController : MonoBehaviour {
     }
 
     public string getUIText(string uiObjectId) {
-        GameObject gameObject = leftAnswerButton;
+        Text textObject = leftAnswerButton.transform.Find("Text").GetComponent<Text>();
 
         if (uiObjectId == leftAnswerButtonId) {
-            gameObject = leftAnswerButton;
+            textObject = leftAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
         if (uiObjectId == centerAnswerButtonId) {
-            gameObject = centerAnswerButton;
+            textObject = centerAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
         if (uiObjectId == rightAnswerButtonId) {
-            gameObject = rightAnswerButton;
+            textObject = rightAnswerButton.transform.Find("Text").GetComponent<Text>();
         }
 
-        return gameObject.transform.Find("Text").GetComponent<Text>().text;
+        if (uiObjectId == gameScoreTextId) {
+            textObject = gameScore.GetComponent<Text>();
+        }
+
+        return textObject.text;
     }
 
     public string getAnswerButtonIdByIndex(int index) {

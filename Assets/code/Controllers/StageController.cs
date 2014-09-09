@@ -17,12 +17,12 @@ public class StageController {
         stageColumnCollection.Add("right", new StageColumn(rightColumnGameObjectName));
 
         /* Set Problem Generator */
-        this.problemGenerator = new ProblemGenerator(GameController.controller.data.minProblemTerm, GameController.controller.data.maxProblemTerm, GameController.controller.data.advancedProblemMode);
+        this.problemGenerator = new ProblemGenerator(GameController.controller.constants.minProblemTerm, GameController.controller.constants.maxProblemTerm, GameController.controller.constants.advancedProblemMode);
 
         /* Misc */
         problemList = new System.Collections.Generic.List<ProblemBlob>();
         this.nextProblemTime = Time.time;
-        this.timeUntilAnswerTimeout = Time.time + GameController.controller.data.answerTimeout;
+        this.timeUntilAnswerTimeout = Time.time + GameController.controller.constants.answerTimeout;
     }
 
 
@@ -40,32 +40,31 @@ public class StageController {
     /* Actions */
     public void update() {
         /* Add new blocks */
-        if (Time.time >= this.nextProblemTime && (this.problemList.Count + 1) <= GameController.controller.data.maxProblemCount) {//Check if it has been enough time since last problem, check if the max number of problems hasnt been met
+        if (Time.time >= this.nextProblemTime && (this.problemList.Count + 1) <= GameController.controller.constants.maxProblemCount) {//Check if it has been enough time since last problem, check if the max number of problems hasnt been met
             ProblemBlob newProblem = this.generate();
 
             this.problemList.Add(newProblem);
-            this.nextProblemTime = Time.time + GameController.controller.data.problemIntervalTime;
-
-            this.updateAnswerButtons();
-
-            /*Debug.Log("Time: " + Time.time + 
-                " Next Problem Time: " + this.nextProblemTime + 
-                " Max Problem Count: " + GameController.controller.data.maxProblemCount + 
-                " Current Problem Count: " + this.problemList.Count);*/ 
+            this.nextProblemTime = Time.time + GameController.controller.constants.problemIntervalTime;
         }
 
         /* Update Slider */
-        /*float timeLeft = this.timeUntilAnswerTimeout - Time.time;
+        float timeLeft = this.timeUntilAnswerTimeout - Time.time;
 
-        GuiController.controller.setSlider(GameController.controller.data.answerTimeout / timeLeft);
-
-        Debug.Log(timeLeft.ToString());
+        GuiController.controller.setSlider(timeLeft / GameController.controller.constants.answerTimeout);
 
         if (timeLeft <= 0) {
-            Debug.Log("Times Up");
-            this.problemList[0].destroy();
-            this.timeUntilAnswerTimeout = Time.time + GameController.controller.data.answerTimeout;
-        }*/
+            ProblemBlob latestProblem = this.problemList[0];
+
+            this.problemList.Remove(latestProblem);
+            latestProblem.destroy();
+
+            GameController.controller.data.modifyGameScore(GameController.controller.constants.wrongProblemScore);
+
+            this.timeUntilAnswerTimeout = Time.time + GameController.controller.constants.answerTimeout;
+        }
+
+        /* Update Score */
+        GuiController.controller.setUIText(GuiController.controller.gameScoreTextId, GameController.controller.data.gameScore.ToString());
 
         /* Make sure Blocks do not bounce */
         for (int i = 0; i < this.problemList.Count; i++) {
@@ -93,18 +92,23 @@ public class StageController {
                     currentBlockVelocity.y = 0;
                     currentBlock.getCubeObject().rigidbody.velocity = currentBlockVelocity;
                 }
+
             }
+        }
+
+        if (this.problemList.Count == 0) {
+            GuiController.controller.setAnswerButtonsActive(false);
         }
     }
 
-    private void updateAnswerButtons() {
+    public void updateAnswerButtons() {
         ProblemBlob latestProblem = this.problemList[0];
 
         if (!latestProblem.getAnswersUIButtonsSet()) {
             latestProblem.setAnswersUIButtonsSet(true);
 
-            int wrongAnswerOneVariation = Random.Range(GameController.controller.data.wrongProblemVariationMin, GameController.controller.data.wrongProblemVariationMax);
-            int wrongAnswerTwoVariation = Random.Range(GameController.controller.data.wrongProblemVariationMin, GameController.controller.data.wrongProblemVariationMax);
+            int wrongAnswerOneVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
+            int wrongAnswerTwoVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
 
             int wrongAnswerOneBase = latestProblem.getProblem().solve();
             int wrongAnswerTwoBase = latestProblem.getProblem().solve();
@@ -140,22 +144,23 @@ public class StageController {
     }
 
     public void checkAnswer(string answerButtonId) {
-        string answerButtonValue = GuiController.controller.getUIText(answerButtonId);
-        int answerValue = System.Convert.ToInt32(answerButtonValue);
+        if (this.problemList.Count != 0) {
+            string answerButtonValue = GuiController.controller.getUIText(answerButtonId);
+            int answerValue = System.Convert.ToInt32(answerButtonValue);
 
-        ProblemBlob latestProblem = this.problemList[0];
+            ProblemBlob latestProblem = this.problemList[0];
 
-        if (answerValue == latestProblem.getProblem().solve()) {
-            Debug.Log("Correct");
+            if (answerValue == latestProblem.getProblem().solve()) {
+                GameController.controller.data.modifyGameScore(GameController.controller.constants.correctProblemScore);
+            }
+            else {
+                GameController.controller.data.modifyGameScore(GameController.controller.constants.wrongProblemScore);
+            }
+
+            this.problemList.Remove(latestProblem);
+            latestProblem.destroy();
+            this.timeUntilAnswerTimeout = Time.time + GameController.controller.constants.answerTimeout;
         }
-        else {
-            Debug.Log("Wrong");
-        }
-
-        this.problemList.Remove(latestProblem);
-        latestProblem.destroy();
-        //GuiController.controller.setSlider(1);
-        //this.timeUntilAnswerTimeout = Time.time + GameController.controller.data.answerTimeout;
     }
 
     private Vector3 generateProblemMaterialIndex() {
@@ -176,7 +181,7 @@ public class StageController {
         Block rightBlock = this.getStageColumn("right").addBLock(problem.getTermTwo().ToString(), materialIndex.z);
 
         ProblemBlob problemBlob = new ProblemBlob(leftBlock, centerBlock, rightBlock, materialIndex, false, problem);
-        Debug.Log(problem.getTermOne() + " " + problem.getOperationSign() + " " + problem.getTermTwo() + " = " + problem.solve());
+        //Debug.Log(problem.getTermOne() + " " + problem.getOperationSign() + " " + problem.getTermTwo() + " = " + problem.solve());
         return problemBlob;
     }
 }
