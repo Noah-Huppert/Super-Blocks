@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StageController {
@@ -66,6 +67,9 @@ public class StageController {
         /* Update Score */
         GuiController.controller.setUIText(GuiController.controller.gameScoreTextId, GameController.controller.data.gameScore.ToString());
 
+        /* Update Strikes */
+        GuiController.controller.setUIText(GuiController.controller.gameStrikesTextId, GameController.controller.data.strikes.ToString());
+
         /* Make sure Blocks do not bounce */
         for (int i = 0; i < this.problemList.Count; i++) {
             ProblemBlob currentProblem = this.problemList[i];
@@ -105,10 +109,22 @@ public class StageController {
         ProblemBlob latestProblem = this.problemList[0];
 
         if (!latestProblem.getAnswersUIButtonsSet()) {
+            GuiController.controller.leftAnswerButton.GetComponent<Image>().color = latestProblem.getBlock("left").getCubeObject().renderer.material.color;
+            GuiController.controller.centerAnswerButton.GetComponent<Image>().color = latestProblem.getBlock("center").getCubeObject().renderer.material.color;
+            GuiController.controller.rightAnswerButton.GetComponent<Image>().color = latestProblem.getBlock("right").getCubeObject().renderer.material.color;
+
             latestProblem.setAnswersUIButtonsSet(true);
 
             int wrongAnswerOneVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
             int wrongAnswerTwoVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
+
+            while(wrongAnswerOneVariation == wrongAnswerTwoVariation){
+                wrongAnswerOneVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
+            }
+
+            while(wrongAnswerTwoVariation == wrongAnswerOneVariation){
+                wrongAnswerTwoVariation = Random.Range(GameController.controller.constants.wrongProblemVariationMin, GameController.controller.constants.wrongProblemVariationMax);
+            }
 
             int wrongAnswerOneBase = latestProblem.getProblem().solve();
             int wrongAnswerTwoBase = latestProblem.getProblem().solve();
@@ -116,8 +132,33 @@ public class StageController {
             int wrongAnswerOne = wrongAnswerOneBase + wrongAnswerOneVariation;
             int wrongAnswerTwo = wrongAnswerTwoBase + wrongAnswerTwoVariation;
 
-            int correctAnswerButtonId = Random.Range(1, 3);
 
+            int correctAnswerButtonId = Random.Range(1, 4);
+
+            while (correctAnswerButtonId == 4) {
+                correctAnswerButtonId = Random.Range(1, 4);
+            }
+
+            int wrongAnswerOneButtonId = Random.Range(1, 4);
+            int wrongAnswerTwoButtonId = Random.Range(1, 4);
+
+            while (wrongAnswerOneButtonId == 4 || wrongAnswerOneButtonId == wrongAnswerTwoButtonId || wrongAnswerOneButtonId == correctAnswerButtonId) {
+                wrongAnswerOneButtonId = Random.Range(1, 4);
+            }
+
+            while (wrongAnswerTwoButtonId == 4 || wrongAnswerTwoButtonId == wrongAnswerOneButtonId || wrongAnswerTwoButtonId == correctAnswerButtonId) {
+                wrongAnswerTwoButtonId = Random.Range(1, 4);
+            }
+
+            string correctAnswerButtonName = GuiController.controller.getAnswerButtonIdByIndex(correctAnswerButtonId);
+            string wrongAnswerOneButtonName = GuiController.controller.getAnswerButtonIdByIndex(wrongAnswerOneButtonId);
+            string wrongAnswerTwoButtonName = GuiController.controller.getAnswerButtonIdByIndex(wrongAnswerTwoButtonId);
+
+            GuiController.controller.setUIText(correctAnswerButtonName, latestProblem.getProblem().solve().ToString());
+            GuiController.controller.setUIText(wrongAnswerOneButtonName, wrongAnswerOne.ToString());
+            GuiController.controller.setUIText(wrongAnswerTwoButtonName, wrongAnswerTwo.ToString());
+
+            /*
             string correctAnswerButtonName = GuiController.controller.getAnswerButtonIdByIndex(correctAnswerButtonId);
             string wrongAnswerButtonNameOne = "";
             string wrongAnswerButtonNameTwo = "";
@@ -139,7 +180,7 @@ public class StageController {
 
             GuiController.controller.setUIText(correctAnswerButtonName, latestProblem.getProblem().solve().ToString());
             GuiController.controller.setUIText(wrongAnswerButtonNameOne, wrongAnswerOne.ToString());
-            GuiController.controller.setUIText(wrongAnswerButtonNameTwo, wrongAnswerTwo.ToString());
+            GuiController.controller.setUIText(wrongAnswerButtonNameTwo, wrongAnswerTwo.ToString());*/
         }
     }
 
@@ -164,9 +205,18 @@ public class StageController {
     }
 
     private Vector3 generateProblemMaterialIndex() {
-        int leftBlock = Random.Range(0, 7);
-        int centerBlock = Random.Range(0, 7);
-        int rightBlock = Random.Range(0, 7);
+        int leftBlock = Random.Range(0, 4);
+
+        int centerBlock = Random.Range(0, 4);
+        while (leftBlock == centerBlock) {
+            centerBlock = Random.Range(0, 4);
+        }
+
+
+        int rightBlock = Random.Range(0, 4);//^^ was 7
+        while (leftBlock == rightBlock || centerBlock == rightBlock) {
+            rightBlock = Random.Range(0, 4);
+        }
 
         return new Vector3(leftBlock, centerBlock, rightBlock);
     }

@@ -45,7 +45,7 @@ public class Block{
     
     /* Actions */
     public void destroy() {
-        GameObject.Destroy(this.getCubeObject());
+        this.getCubeObject().transform.position = new Vector3(100, 100, 100);
     }
 
 

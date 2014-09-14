@@ -8,8 +8,28 @@ public class StageColumn {
     public StageColumn(string gameObjName) {
         GameObject gameObject = GameObject.Find(gameObjName);
         this.setGameObject(gameObject);
-        this.blockColors = new Material[8];
+        this.blockColors = new Material[5];//was 8
 
+        this.blockColors[0] = new Material(Shader.Find("Diffuse"));
+        this.blockColors[0].SetColor("_Color", new Color(0.93f, 0.48f, 1f, 1f));//Purple
+
+
+        this.blockColors[1] = new Material(Shader.Find("Diffuse"));
+        this.blockColors[1].SetColor("_Color", new Color(0f, 0.64f, 0.97f, 1f));//Blue
+
+
+        this.blockColors[2] = new Material(Shader.Find("Diffuse"));
+        this.blockColors[2].SetColor("_Color", new Color(0.09f, 0.67f, 0.31f, 1f));//Green
+
+
+        this.blockColors[3] = new Material(Shader.Find("Diffuse"));
+        this.blockColors[3].SetColor("_Color", new Color(1f, 0.80f, 0f, 1f));//Yellow
+
+
+        this.blockColors[4] = new Material(Shader.Find("Diffuse"));
+        this.blockColors[4].SetColor("_Color", new Color(1f, 0.45f, 0.45f, 1f));//Red
+
+        /*
         this.blockColors[0] = new Material(Shader.Find("Diffuse"));
         this.blockColors[0].SetColor("_Color", new Color(0, 01f, 0.13f, 1f));//Green #00FF24
 
@@ -32,7 +52,7 @@ public class StageColumn {
         this.blockColors[6].SetColor("_Color", new Color(0.62f, 0.54f, 0.81f, 1f));//Other Purple #9F0ECF
 
         this.blockColors[7] = new Material(Shader.Find("Diffuse"));
-        this.blockColors[7].SetColor("_Color", new Color(0.74f, 0.23f, 0.33f, 1f));//Other Red #BF3D55
+        this.blockColors[7].SetColor("_Color", new Color(0.74f, 0.23f, 0.33f, 1f));//Other Red #BF3D55*/
     }
 
     /* Getters */

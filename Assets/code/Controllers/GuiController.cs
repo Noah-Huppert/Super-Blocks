@@ -9,14 +9,19 @@ public class GuiController : MonoBehaviour {
     public string centerAnswerButtonId { get; set; }
     public string rightAnswerButtonId { get; set; }
     public string gameScoreTextId { get; set; }
+    public string gameStrikesTextId { get; set; }
     public string answerTimeoutSliderId { get; set; }
 
     public string menuPlayButtonId { get; set; }
+
+    public string gameOverNavToMenuButtonId { get; set; }
+    public string gameOverReplayButtonId { get; set; }
 
     public GameObject leftAnswerButton;
     public GameObject centerAnswerButton;
     public GameObject rightAnswerButton;
     public GameObject gameScore;
+    public GameObject gameStrikes;
     public GameObject answerTimer;
 
     public void Awake() {
@@ -30,6 +35,7 @@ public class GuiController : MonoBehaviour {
         rightAnswerButton = GameObject.Find(GuiController.controller.rightAnswerButtonId);
         answerTimer = GameObject.Find(GuiController.controller.answerTimeoutSliderId);
         gameScore = GameObject.Find(GuiController.controller.gameScoreTextId);
+        gameStrikes = GameObject.Find(GuiController.controller.gameStrikesTextId);
     }
 
     /* Actions */
@@ -49,8 +55,12 @@ public class GuiController : MonoBehaviour {
         rightAnswerButtonId = "Right Answer Button";
         answerTimeoutSliderId = "Answer Timer";
         gameScoreTextId = "Game Score";
+        gameStrikesTextId = "Game Strikes";
 
         menuPlayButtonId = "Menu Play Button";
+
+        gameOverNavToMenuButtonId = "Game Over Nav To Menu";
+        gameOverReplayButtonId = "Game Over Replay";
     }
 
     public void setAnswerButtonsActive(bool active) {
@@ -76,6 +86,10 @@ public class GuiController : MonoBehaviour {
 
         if (uiObjectId == gameScoreTextId) {
             textObject = gameScore.GetComponent<Text>();
+        }
+
+        if (uiObjectId == gameStrikesTextId) {
+            textObject = gameStrikes.GetComponent<Text>();
         }
 
         textObject.text = newText;
@@ -140,5 +154,13 @@ public class GuiController : MonoBehaviour {
 
     public void onMenuPlayButtonClick() {
         GameController.controller.OnGuiClick(menuPlayButtonId);
+    }
+
+    public void onGameOverNavToMenuButtonClick() {
+        GameController.controller.OnGuiClick(gameOverNavToMenuButtonId);
+    }
+
+    public void onGameOverReplayButtonClick() {
+        GameController.controller.OnGuiClick(gameOverReplayButtonId);
     }
 }

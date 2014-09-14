@@ -14,6 +14,7 @@ public class MainMenuSceneController : SceneController {
         base.OnGameGuiClick(clickId);
 
         if (clickId == GuiController.controller.menuPlayButtonId) {
+            GameController.controller.prepareForNewGame();
             Application.LoadLevel("Super Blocks");
         }
     }

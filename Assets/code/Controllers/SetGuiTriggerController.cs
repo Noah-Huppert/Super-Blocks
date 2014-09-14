@@ -2,8 +2,20 @@
 using System.Collections;
 
 public class SetGuiTriggerController : MonoBehaviour {
+    private int inTrigger = 0;
 
     public void OnTriggerEnter() {
-        EventController.controller.fire(MainGameSceneController.EVENT_ON_GUI_TRIGGER_UPDATE);        
+        inTrigger++;
+        EventController.controller.fire(MainGameSceneController.EVENT_ON_GUI_UPDATE_TRIGGER_UPDATE);        
+    }
+
+    public void OnTriggerExit() {
+        inTrigger--;
+    }
+
+    public void Update() {
+        if (inTrigger == 0) {
+            EventController.controller.fire(MainGameSceneController.EVENT_ON_GUI_UPDATE_TRIGGER_EMPTY);  
+        }
     }
 }

@@ -4,7 +4,8 @@ using System.Collections;
 public class MainGameSceneController : SceneController {
     private StageController stage { get; set; }
 
-    public static string EVENT_ON_GUI_TRIGGER_UPDATE = "EVENT_ON_GUI_TRIGGER_UPDATE";
+    public static string EVENT_ON_GUI_UPDATE_TRIGGER_UPDATE = "EVENT_ON_GUI_UPDATE_TRIGGER_UPDATE";
+    public static string EVENT_ON_GUI_UPDATE_TRIGGER_EMPTY = "EVENT_ON_GUI_UPDATE_TRIGGER_EMPTY";
 
     /* Lifetime Events */
     public override void OnGameStart() {
@@ -33,6 +34,8 @@ public class MainGameSceneController : SceneController {
 
     public override void OnGameFail() {
         base.OnGameFail();
+
+        Application.LoadLevel("Game Over");
     }
 
     public override void OnGameDisable() {
@@ -43,13 +46,21 @@ public class MainGameSceneController : SceneController {
     public override void OnUnknownEvent(CustomEventBlob eventBlob) {
         base.OnUnknownEvent(eventBlob);
 
-        if (eventBlob.name == MainGameSceneController.EVENT_ON_GUI_TRIGGER_UPDATE) {
-            OnGuiTriggerUpdate();
+        if (eventBlob.name == MainGameSceneController.EVENT_ON_GUI_UPDATE_TRIGGER_UPDATE) {
+            OnGuiUpdateTriggerUpdate();
+        }
+
+        if (eventBlob.name == MainGameSceneController.EVENT_ON_GUI_UPDATE_TRIGGER_EMPTY) {
+            OnGuiUpdateTriggerEmpty();
         }
     }
 
-    public void OnGuiTriggerUpdate() {
+    public void OnGuiUpdateTriggerUpdate() {
         this.stage.updateAnswerButtons();
         GuiController.controller.setAnswerButtonsActive(true);
+    }
+
+    public void OnGuiUpdateTriggerEmpty() {
+        GuiController.controller.setAnswerButtonsActive(false);
     }
 }

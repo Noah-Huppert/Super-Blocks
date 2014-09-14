@@ -52,6 +52,8 @@ public class GameController : MonoBehaviour {
     public void OnDisable() {
         EventController.controller.fire(EventController.EVENT_GAME_ON_DISABLE);
 
+        PlayerPrefs.SetInt("LatestScore", GameController.controller.data.gameScore);
+
         this.save();
     }
 
@@ -62,7 +64,7 @@ public class GameController : MonoBehaviour {
         if (controller != null && controller != this) {//Make sure current controller is this one
             Destroy(gameObject);
         }
-
+        
         controller = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -71,7 +73,13 @@ public class GameController : MonoBehaviour {
         this.constants = new ConstantController();
         //this.stage = new StageController("leftColumn", "centerColumn", "rightColumn");
         this.settings = new SettingsController();
+
         this.data = new DataController();
+    }
+
+    public void prepareForNewGame() {
+        this.data = new DataController();
+        PlayerPrefs.SetInt("LatestScore", 0);
     }
 
 

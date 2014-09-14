@@ -55,10 +55,12 @@
     <Compile Include="Assets\code\Controllers\GameController.cs" />
     <Compile Include="Assets\code\Controllers\GuiController.cs" />
     <Compile Include="Assets\code\Controllers\ProblemGenerator.cs" />
+    <Compile Include="Assets\code\Controllers\SceneControllers\GameOverSceneController.cs" />
     <Compile Include="Assets\code\Controllers\SceneControllers\MainGameSceneController.cs" />
     <Compile Include="Assets\code\Controllers\SceneControllers\MainMenuSceneController.cs" />
     <Compile Include="Assets\code\Controllers\SceneControllers\SceneController.cs" />
     <Compile Include="Assets\code\Controllers\SceneControllers\SceneControllerTemplate.cs" />
+    <Compile Include="Assets\code\Controllers\DestroyCubeTriggerController.cs" />
     <Compile Include="Assets\code\Controllers\SetGuiTriggerController.cs" />
     <Compile Include="Assets\code\Controllers\SettingsController.cs" />
     <Compile Include="Assets\code\Controllers\StageController.cs" />

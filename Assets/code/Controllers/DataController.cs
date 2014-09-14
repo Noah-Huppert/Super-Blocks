@@ -13,12 +13,12 @@ public class DataController {
     }
 
     public void modifyGameScore(int modifer) {
-        if ((gameScore + modifer) <= 0) {
+        if (gameScore + modifer <= 0) {
             gameScore = 0;
             strikes += 1;
         }
-        else {
-            gameScore += modifer;
+        else if (modifer < 0) {
+            strikes += 1;
         }
 
         checkFailure();
