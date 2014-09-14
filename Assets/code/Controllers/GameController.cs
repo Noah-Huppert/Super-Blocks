@@ -34,22 +34,24 @@ public class GameController : MonoBehaviour {
     }
 
     public void Start() {
-        
+        EventController.controller.fire(EventController.EVENT_GAME_START);
     }
 
     public void Update() {
-        GameController.controller.stage.update();
+        EventController.controller.fire(EventController.EVENT_GAME_UPDATE);
     }
 
     public void OnGuiClick(string clickId) {
-        GameController.controller.stage.checkAnswer(clickId);
+        EventController.controller.fire(EventController.EVENT_GAME_ON_GUI_CLICK, clickId);
     }
 
     public void OnGameFail() {
-        Application.Quit();
+        EventController.controller.fire(EventController.EVENT_GAME_ON_GAME_FAIL);
     }
 
     public void OnDisable() {
+        EventController.controller.fire(EventController.EVENT_GAME_ON_DISABLE);
+
         this.save();
     }
 

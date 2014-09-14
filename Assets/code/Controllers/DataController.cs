@@ -13,7 +13,6 @@ public class DataController {
     }
 
     public void modifyGameScore(int modifer) {
-        Debug.Log("ModifyGameScore");
         if ((gameScore + modifer) <= 0) {
             gameScore = 0;
             strikes += 1;
@@ -28,7 +27,6 @@ public class DataController {
     public void checkFailure() {
         if (strikes >= GameController.controller.constants.strikeLimit) {
             GameController.controller.OnGameFail();
-            Debug.Log("OnGameFail");
         }
     }
 }
