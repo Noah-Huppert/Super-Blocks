@@ -9,6 +9,7 @@ public class EventController : MonoBehaviour {
     public event CustomEventHandler CustomEvent;
 
     public static string EVENT_GAME_START = "EVENT_GAME_START";
+    public static string EVENT_SCENE_START = "EVENT_SCENE_START";
     public static string EVENT_GAME_UPDATE = "EVENT_GAME_UPDATE";
     public static string EVENT_GAME_ON_GUI_CLICK = "EVENT_GAME_ON_GUI_CLICK";
     public static string EVENT_GAME_ON_GAME_FAIL = "EVENT_GAME_ON_GAME_FAIL";

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
     public static GameController controller { get; private set; }
     public ConstantController constants { get; private set; }
     public SettingsController settings { get; private set; }
-    public StageController stage { get; private set; }
+    //public StageController stage { get; private set; }
     public DataController data { get; private set; }
 
     /* Unity Lifecycle Methods
@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour {
 
     private void initProperties() {
         this.constants = new ConstantController();
-        this.stage = new StageController("leftColumn", "centerColumn", "rightColumn");
+        //this.stage = new StageController("leftColumn", "centerColumn", "rightColumn");
         this.settings = new SettingsController();
         this.data = new DataController();
     }

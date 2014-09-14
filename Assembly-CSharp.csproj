@@ -48,15 +48,22 @@
   <ItemGroup>
      <Compile Include="Assets\code\ClassTemplate.cs" />
      <Compile Include="Assets\code\Controllers\ConstantController.cs" />
+     <Compile Include="Assets\code\Controllers\CustomEventListener.cs" />
      <Compile Include="Assets\code\Controllers\DataController.cs" />
+     <Compile Include="Assets\code\Controllers\EventController.cs" />
      <Compile Include="Assets\code\Controllers\GameController.cs" />
      <Compile Include="Assets\code\Controllers\GuiController.cs" />
      <Compile Include="Assets\code\Controllers\ProblemGenerator.cs" />
+     <Compile Include="Assets\code\Controllers\SceneControllers\MainGameSceneController.cs" />
+     <Compile Include="Assets\code\Controllers\SceneControllers\MainMenuSceneController.cs" />
+     <Compile Include="Assets\code\Controllers\SceneControllers\SceneController.cs" />
+     <Compile Include="Assets\code\Controllers\SceneControllers\SceneControllerTemplate.cs" />
      <Compile Include="Assets\code\Controllers\SetGuiTriggerController.cs" />
      <Compile Include="Assets\code\Controllers\SettingsController.cs" />
      <Compile Include="Assets\code\Controllers\StageController.cs" />
      <Compile Include="Assets\code\Models\BasicCollection.cs" />
      <Compile Include="Assets\code\Models\Block.cs" />
+     <Compile Include="Assets\code\Models\CustomEventBlob.cs" />
      <Compile Include="Assets\code\Models\Problem.cs" />
      <Compile Include="Assets\code\Models\ProblemBlob.cs" />
      <Compile Include="Assets\code\Models\ProblemBlobCollection.cs" />

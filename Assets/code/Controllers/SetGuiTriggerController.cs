@@ -4,7 +4,6 @@ using System.Collections;
 public class SetGuiTriggerController : MonoBehaviour {
 
     public void OnTriggerEnter() {
-        GameController.controller.stage.updateAnswerButtons();
-        GuiController.controller.setAnswerButtonsActive(true);
+        EventController.controller.fire(MainGameSceneController.EVENT_ON_GUI_TRIGGER_UPDATE);        
     }
 }

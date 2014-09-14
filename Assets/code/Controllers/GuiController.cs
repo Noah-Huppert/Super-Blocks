@@ -11,6 +11,8 @@ public class GuiController : MonoBehaviour {
     public string gameScoreTextId { get; set; }
     public string answerTimeoutSliderId { get; set; }
 
+    public string menuPlayButtonId { get; set; }
+
     public GameObject leftAnswerButton;
     public GameObject centerAnswerButton;
     public GameObject rightAnswerButton;
@@ -28,9 +30,6 @@ public class GuiController : MonoBehaviour {
         rightAnswerButton = GameObject.Find(GuiController.controller.rightAnswerButtonId);
         answerTimer = GameObject.Find(GuiController.controller.answerTimeoutSliderId);
         gameScore = GameObject.Find(GuiController.controller.gameScoreTextId);
-
-
-        GuiController.controller.setAnswerButtonsActive(false);
     }
 
     /* Actions */
@@ -50,6 +49,8 @@ public class GuiController : MonoBehaviour {
         rightAnswerButtonId = "Right Answer Button";
         answerTimeoutSliderId = "Answer Timer";
         gameScoreTextId = "Game Score";
+
+        menuPlayButtonId = "Menu Play Button";
     }
 
     public void setAnswerButtonsActive(bool active) {
@@ -135,5 +136,9 @@ public class GuiController : MonoBehaviour {
 
     public void onRightButtonClick() {
         GameController.controller.OnGuiClick(rightAnswerButtonId);
+    }
+
+    public void onMenuPlayButtonClick() {
+        GameController.controller.OnGuiClick(menuPlayButtonId);
     }
 }
