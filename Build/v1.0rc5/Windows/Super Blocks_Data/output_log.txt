@@ -1,0 +1,42 @@
+Initialize engine version: 4.6.0b18 (c6d68b07d87a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Vendor:   NVIDIA
+    VRAM:     1985 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+- Completed reload, in  0.098 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\System.Xml.dll (this message is harmless)
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0rc5\Windows\Super Blocks_Data\Managed\System.Data.dll (this message is harmless)
+UnloadTime: 22.475523 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 297.
+Total: 0.772203 ms (FindLiveObjects: 0.012077 ms CreateObjectMapping: 0.011345 ms MarkObjects: 0.271186 ms  DeleteObjects: 0.007319 ms)
+
+UnloadTime: 2.120815 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 199.
+Total: 0.938721 ms (FindLiveObjects: 0.009515 ms CreateObjectMapping: 0.017932 ms MarkObjects: 0.259841 ms  DeleteObjects: 0.208970 ms)
+
+UnloadTime: 1.417414 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 185.
+Total: 0.693153 ms (FindLiveObjects: 0.007685 ms CreateObjectMapping: 0.012443 ms MarkObjects: 0.231295 ms  DeleteObjects: 0.007319 ms)
+

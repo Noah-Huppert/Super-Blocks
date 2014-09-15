@@ -19,6 +19,10 @@ public class DataController {
         }
         else if (modifer < 0) {
             strikes += 1;
+            gameScore += modifer;
+        }
+        else {
+            gameScore += modifer;
         }
 
         checkFailure();
