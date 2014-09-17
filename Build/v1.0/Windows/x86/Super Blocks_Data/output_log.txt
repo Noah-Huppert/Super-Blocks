@@ -1,0 +1,20 @@
+Initialize engine version: 4.6.0b18 (c6d68b07d87a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Vendor:   NVIDIA
+    VRAM:     1985 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\Users\noahh_000\Noah\Programing\Unity\Super Blocks\Build\v1.0\Windows\x86\Super Blocks_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+- Completed reload, in  0.095 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
